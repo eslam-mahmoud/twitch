@@ -20,10 +20,37 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $twitchId;
+
     public function __construct()
     {
         //To override the __construct() method, be sure to call parent::__construct(), as the base User class depends on this to initialize some fields.
         parent::__construct();
         
+    }
+
+    /**
+     * Get twitch_id
+     *
+     * @return string 
+     */
+    public function getTwitchId()
+    {
+        return $this->twitchId;
+    }
+
+    /**
+     * Set twitch_id
+     *
+     * @param string $twitchId
+     * @return User
+     */
+    public function setTwitchId($twitchId)
+    {
+        $this->twitchId = $twitchId;
+        return $this;
     }
 }
