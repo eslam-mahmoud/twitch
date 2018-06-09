@@ -1,5 +1,42 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body %}
-:)
+<p>Username: {{ app.user.username }}</p>
+<p>Email: {{ app.user.email }}</p>
+<p>
+	TwichId: {{app.user.twitchId}}
+
+	{% if app.user.twitchId %}
+	    <label class="toggleTwitchForm">Edit</label>
+	{% else %}
+	    <label class="toggleTwitchForm">Add</label>
+	{% endif %}
+</p>
+
+{{ form_start(twitchForm, {'attr': {'id': 'twitchForm'}}) }}
+{{ form_widget(twitchForm) }}
+{{ form_end(twitchForm) }}
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+	.toggleTwitchForm {
+		color: blue;
+		cursor: pointer;
+	}
+	#twitchForm {
+		display: none;
+	}
+</style>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+	$(document).ready(function(){
+		$('.toggleTwitchForm').click(function() {
+			$('#twitchForm').toggle();
+		})
+	})
+</script>
 {% endblock %}
