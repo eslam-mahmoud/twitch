@@ -37,6 +37,10 @@ class UserController extends Controller
             $user->setTwitchId($twitchId);
             $entityManager->persist($user);
             $entityManager->flush();
+
+            //subscribe to webhook to get notified when user go live or offline
+            $twitchId = $TwitchAPI->webhooksSubscribeUser($user->getTwitchId());
+
         }
 
         $isUserLive = $TwitchAPI->isUserLive($user->getTwitchLogin());
