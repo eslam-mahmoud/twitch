@@ -151,7 +151,7 @@ class TwitchAPI
         );
         //TODO get URL from params
         $query = array(
-            'hub.callback'=>'http://127.0.0.1:8000/webhook/subscribeUser'.$userId,
+            'hub.callback'=>'http://127.0.0.1:8000/webhook/subscribeUser/'.$userId,
             'hub.mode'=>'subscribe',
             'hub.topic'=>'https://api.twitch.tv/helix/streams?user_id='.$twitchUserId,
             'hub.lease_seconds' => 864000 //10 days 
