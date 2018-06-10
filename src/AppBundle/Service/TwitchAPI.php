@@ -139,17 +139,18 @@ class TwitchAPI
     }
 
     /**
+     * @param Integer $userId system user id
      * @param Integer $twitchUserId twitch user id
      * @return Boolian true or false on success of failer of subscrioption 
      */
-    public function webhooksSubscribeUser($twitchUserId) {
+    public function webhooksSubscribeUser($userId, $twitchUserId) {
         $headers = array(
             'Client-ID'=>$this->id,
             // 'Content-Type' => 'application/json',
             'Content-Type' => 'application/x-www-form-urlencoded',
         );
         $query = array(
-            'hub.callback'=>'http://127.0.0.1:8000/webhooks/subscribeUser',
+            'hub.callback'=>'http://127.0.0.1:8000/webhook/subscribeUser'.$userId,
             'hub.mode'=>'subscribe',
             'hub.topic'=>'https://api.twitch.tv/helix/streams?user_id='.$twitchUserId,
             'hub.lease_seconds' => 864000 //10 days 
