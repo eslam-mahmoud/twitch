@@ -10,6 +10,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 123
-    twitch:
-        id: 123
-        secret: 123
+    twitch_id: 123
+    twitch_secret: 123

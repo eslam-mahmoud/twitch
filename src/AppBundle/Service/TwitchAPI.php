@@ -6,10 +6,18 @@ use Unirest;
 
 class TwitchAPI
 {
+    private $id;
+    private $secret;
+
+    public function __construct($id, $secret)
+    {
+        $this->id = $id;
+        $this->secret = $secret;
+    }
+
     public function getStreams($user_login)
     {
-        //TODO USE ID FROM PARAMS
-        $headers = array('Client-ID'=>'suhvoekstds1n449e6gjmq3acbfp8f');
+        $headers = array('Client-ID'=>$this->id);
         $query = array('user_login'=>$user_login);
                 
         $response = Unirest\Request::get('https://api.twitch.tv/helix/streams',$headers,$query);
