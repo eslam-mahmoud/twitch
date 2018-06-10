@@ -67,13 +67,14 @@ class TwitchAPI
                 
         $response = Unirest\Request::get('https://api.twitch.tv/helix/users',$headers,$query);
 
-        return $response;
+        return $response->body;
     }
 
     public function getIdByLoginName($user_login)
     {
         $twitchUser = $this->getUserByLoginName($user_login);
-        foreach ($streams->data as $key => $value) {
+        var_dump($twitchUser);
+        foreach ($twitchUser->data as $key => $value) {
             if ($value->id) {
                 return $value->id;
             }
