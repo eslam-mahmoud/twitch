@@ -59,4 +59,26 @@ class TwitchAPI
         }
         return false;
     }
+
+    public function getUserByLoginName($user_login)
+    {
+        $headers = array('Client-ID'=>$this->id);
+        $query = array('login'=>$user_login);
+                
+        $response = Unirest\Request::get('https://api.twitch.tv/helix/users',$headers,$query);
+
+        return $response;
+    }
+
+    public function getIdByLoginName($user_login)
+    {
+        $twitchUser = $this->getUserByLoginName($user_login);
+        foreach ($streams->data as $key => $value) {
+            if ($value->id) {
+                return $value->id;
+            }
+        }
+        //TODO exception
+        return null;
+    }
 }

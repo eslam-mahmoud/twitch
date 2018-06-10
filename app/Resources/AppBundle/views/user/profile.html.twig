@@ -4,9 +4,9 @@
 <p>Username: {{ app.user.username }}</p>
 <p>Email: {{ app.user.email }}</p>
 <p>
-	TwichId: {{app.user.twitchId}}
+	Twich Login: {{app.user.twitchLogin}}
 
-	{% if app.user.twitchId %}
+	{% if app.user.twitchLogin %}
 	    <label class="toggleTwitchForm">Edit</label>
 	{% else %}
 	    <label class="toggleTwitchForm">Add</label>
@@ -17,7 +17,7 @@
 {{ form_widget(twitchForm) }}
 {{ form_end(twitchForm) }}
 
-{% if app.user.twitchId %}
+{% if app.user.twitchLogin %}
 	<p>Live now : {{ isUserLive?'Yes':'No' }}</p>
 {% endif %}
 

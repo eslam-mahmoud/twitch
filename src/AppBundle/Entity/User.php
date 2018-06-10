@@ -21,9 +21,14 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="integer", length=100, nullable=true)
      */
     private $twitchId;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $twitchLogin;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -56,6 +61,28 @@ class User extends BaseUser
     public function setTwitchId($twitchId)
     {
         $this->twitchId = $twitchId;
+        return $this;
+    }
+
+    /**
+     * Get twitch_Login
+     *
+     * @return string 
+     */
+    public function getTwitchLogin()
+    {
+        return $this->twitchLogin;
+    }
+
+    /**
+     * Set twitch_Login
+     *
+     * @param string $twitchId
+     * @return User
+     */
+    public function setTwitchLogin($twitchLogin)
+    {
+        $this->twitchLogin = $twitchLogin;
         return $this;
     }
 

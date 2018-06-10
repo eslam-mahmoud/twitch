@@ -18,10 +18,9 @@ class UserController extends Controller
     public function profileAction(Request $request, TwitchAPI $TwitchAPI)
     {
         $user = $this->getUser();
-        // print_r($user);
         $twitchForm = $this->createFormBuilder($user)
-            ->add('twitchId', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Save twitch ID'))
+            ->add('twitchLogin', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Save twitch login name'))
             ->getForm();
 
         $twitchForm->handleRequest($request);
@@ -33,11 +32,14 @@ class UserController extends Controller
 
             //save the user to the database
             $entityManager = $this->getDoctrine()->getManager();
+            //TODO handle exception if not found
+            $twitchId = $TwitchAPI->getIdByLoginName($user->getTwitchLogin());
+            $user->setTwitchId($twitchId);
             $entityManager->persist($user);
             $entityManager->flush();
         }
 
-        $isUserLive = $TwitchAPI->isUserLive($user->getTwitchId());
+        $isUserLive = $TwitchAPI->isUserLive($user->getTwitchLogin());
 
         return $this->render('AppBundle::user/profile.html.twig', [
             'twitchForm' => $twitchForm->createView(),
