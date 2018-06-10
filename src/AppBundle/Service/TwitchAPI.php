@@ -129,7 +129,6 @@ class TwitchAPI
     public function getIdByLoginName($twtichLoginName)
     {
         $twitchUser = $this->getUserByLoginName($twtichLoginName);
-        var_dump($twitchUser);
         foreach ($twitchUser->data as $key => $value) {
             if ($value->id) {
                 return $value->id;
