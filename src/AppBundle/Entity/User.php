@@ -21,9 +21,14 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $twitchId;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $streaming;
 
     public function __construct()
     {
@@ -51,6 +56,28 @@ class User extends BaseUser
     public function setTwitchId($twitchId)
     {
         $this->twitchId = $twitchId;
+        return $this;
+    }
+
+    /**
+     * Get streaming
+     *
+     * @return string 
+     */
+    public function getStreaming()
+    {
+        return $this->streaming;
+    }
+
+    /**
+     * Set streaming
+     *
+     * @param boolian $streaming
+     * @return User
+     */
+    public function setStreaming($streaming)
+    {
+        $this->streaming = $streaming;
         return $this;
     }
 }
