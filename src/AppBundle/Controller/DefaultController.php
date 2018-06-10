@@ -15,10 +15,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request, TwitchAPI $TwitchAPI)
     {
-        // $entityManager = $this->getDoctrine()->getManager();
+        //get all users
         $userRepository = $this->getDoctrine()->getRepository(User::class);
         $users = $userRepository->findAll();
         
+        //render streaming status
         return $this->render('AppBundle::default/index.html.twig', [
             'users' => $users
         ]);

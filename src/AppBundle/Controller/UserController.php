@@ -43,11 +43,11 @@ class UserController extends Controller
 
         }
 
-        $isUserLive = $TwitchAPI->isUserLive($user->getTwitchLogin());
+        // $isUserLive = $TwitchAPI->isUserLive($user->getTwitchLogin());
 
         return $this->render('AppBundle::user/profile.html.twig', [
             'twitchForm' => $twitchForm->createView(),
-            'isUserLive' => $isUserLive
+            // 'isUserLive' => $isUserLive
         ]);
     }
 }

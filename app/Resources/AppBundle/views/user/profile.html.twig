@@ -18,7 +18,7 @@
 {{ form_end(twitchForm) }}
 
 {% if app.user.twitchLogin %}
-	<p>Live now : {{ isUserLive?'Yes':'No' }}</p>
+	<p>Live now : {{ app.user.streaming?'Yes':'No' }}</p>
 {% endif %}
 
 {% endblock %}

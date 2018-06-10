@@ -149,6 +149,7 @@ class TwitchAPI
             // 'Content-Type' => 'application/json',
             'Content-Type' => 'application/x-www-form-urlencoded',
         );
+        //TODO get URL from params
         $query = array(
             'hub.callback'=>'http://127.0.0.1:8000/webhook/subscribeUser'.$userId,
             'hub.mode'=>'subscribe',
