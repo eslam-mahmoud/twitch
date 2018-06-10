@@ -8,13 +8,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\User;
+use AppBundle\Service\TwitchAPI;
 
 class UserController extends Controller
 {
     /**
      * @Route("/user/profile", name="userProfile")
      */
-    public function profileAction(Request $request)
+    public function profileAction(Request $request, TwitchAPI $TwitchAPI)
     {
         $user = $this->getUser();
         // print_r($user);
@@ -36,8 +37,11 @@ class UserController extends Controller
             $entityManager->flush();
         }
 
+        $isUserLive = $TwitchAPI->isUserLive($user->getTwitchId());
+
         return $this->render('AppBundle::user/profile.html.twig', [
-            'twitchForm' => $twitchForm->createView()
+            'twitchForm' => $twitchForm->createView(),
+            'isUserLive' => $isUserLive
         ]);
     }
 }

@@ -17,6 +17,10 @@
 {{ form_widget(twitchForm) }}
 {{ form_end(twitchForm) }}
 
+{% if app.user.twitchId %}
+	<p>Live now : {{ isUserLive?'Yes':'No' }}</p>
+{% endif %}
+
 {% endblock %}
 
 {% block stylesheets %}
